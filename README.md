@@ -57,13 +57,15 @@ export class AppModule { }
 
 ```
 import { JPushPlugin } from '@ionic-native/jpush';
+import { Platform  } from 'ionic-angular';
 
-constructor(public jpush: JPushPlugin) {
-	this.init();
-	//延迟执行，等极光完全初始化
-	setTimeout(()=>{
-		this.setAlias( "Alias" );
-	},300)
+constructor(public jpush: JPushPlugin,private platform: Platform) 
+	this.platform.ready().then(() => {
+     
+        	this.init();
+
+    	});
+     
 }
 
 init(){
@@ -85,15 +87,4 @@ setAlias( Alias : string ){
         	alert( JSON.stringify(err) );
       	});
 }
-
-............
-
-...
-
-
-```
-
-## Support
-- QQ 群：513752928
-
-
+  
